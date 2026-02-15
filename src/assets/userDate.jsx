@@ -1,7 +1,7 @@
 export const userData = {
   name: "Saurab",
   username: "Nirgranthi",
-  instagram: "s.a.u.r.a.b_",
+  instagram: "S.a.u.r.a.b_",
   email: "",
   title: "Full Stack Developer & AI Enthusiast",
   bio: "Building high-stakes RTS games, AI-driven scrapers, and local LLM solutions. I love exploring the intersection of systems programming and intelligent automation.",
@@ -11,7 +11,7 @@ export const userData = {
     { name: "Node.js", level: 80 },
     { name: "AI/LLMs", level: 75 },
     { name: "Solana/Web3", level: 70 },
-    { name: "Python", level: 80 }
+    { name: "Python", level: 85 }
   ],
   projects: [
     {
@@ -19,7 +19,7 @@ export const userData = {
       description: "Conquest IO: A high-stakes real-time strategy game featuring multi-base chain attacks, adaptive AI, and cross-platform support.",
       tech: ["JavaScript", "Socket.io", "Game Engine"],
       github: "https://github.com/nirgranthi/Conquerer_Ultimate",
-      demo: "#",
+      demo: "https://github.com/nirgranthi/Conquerer_Ultimate",
       type: "Game Dev"
     },
     {
@@ -27,7 +27,7 @@ export const userData = {
       description: "Download full history of OHLCV data of a Solana based memecoin for AI analysis and investment decision support.",
       tech: ["HTML", "Solana API", "Python"],
       github: "https://github.com/nirgranthi/memecoin-scraper",
-      demo: "#",
+      demo: "https://github.com/nirgranthi/memecoin-scraper",
       type: "Web3/AI"
     },
     {

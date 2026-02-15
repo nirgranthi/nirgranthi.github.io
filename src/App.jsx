@@ -5,23 +5,6 @@ import { Navbar } from './assets/Navbar';
 import { Projects } from './assets/Projects';
 import { Skills } from './assets/Skills';
 import { Stats } from './assets/Stats';
-import { 
-  Github, 
-  Linkedin, 
-  Mail, 
-  ExternalLink, 
-  Code2, 
-  Cpu, 
-  Globe, 
-  Terminal,
-  MessageSquare,
-  ChevronRight,
-  Menu,
-  X,
-  Database,
-  Layers
-} from 'lucide-react';
-
 
 export default function App() {
   return (
