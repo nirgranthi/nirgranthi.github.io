@@ -9,9 +9,9 @@ export const Footer = () => {
           © {new Date().getFullYear()} {userData.name}. Designed with care.
         </div>
         <div className="flex gap-6">
-          <a href={`mailto:${userData.email}`} target="_blank" className="text-slate-400 hover:text-white transition-colors"><Mail size={20} /></a>
-          <a href={`https://github.com/${userData.username}`} target="_blank" className="text-slate-400 hover:text-white transition-colors"><Github size={20} /></a>
-          <a href={`https://instagram.com/${userData.instagram}`} target="_blank" className="text-slate-400 hover:text-white transition-colors"><Instagram size={20} /></a>
+          <a href={`mailto:${userData.email}`} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors"><Mail size={20} /></a>
+          <a href={`https://github.com/${userData.username}`} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors"><Github size={20} /></a>
+          <a href={`https://instagram.com/${userData.instagram}`} target="_blank" rel="noopener noreferrer" className="text-slate-400 hover:text-white transition-colors"><Instagram size={20} /></a>
         </div>
       </div>
     </footer>

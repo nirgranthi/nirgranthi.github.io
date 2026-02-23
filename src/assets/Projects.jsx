@@ -10,7 +10,7 @@ export const Projects = () => {
             <h2 className="text-4xl font-bold text-white mb-4">Featured Projects</h2>
             <p className="text-slate-400">Selection of my personal and open-source contributions.</p>
           </div>
-          <a href={`https://github.com/${userData.username}?tab=repositories`} className="text-purple-400 flex items-center gap-2 hover:underline">
+          <a href={`https://github.com/${userData.username}?tab=repositories`} target="_blank" rel="noopener noreferrer" className="text-purple-400 flex items-center gap-2 hover:underline">
             View All GitHub <ChevronRight size={20} />
           </a>
         </div>
@@ -21,13 +21,17 @@ export const Projects = () => {
               <div className="p-8">
                 <div className="flex justify-between items-start mb-4">
                   <div className="p-3 bg-purple-500/10 text-purple-400 rounded-2xl">
-                    {project.type === "Game Dev" ? <Terminal size={24} /> : project.type === "Web3/AI" ? <Database size={24} /> : <Layers size={24} />}
+                    {project.type === "Game Dev"
+                      ? <Terminal size={24} />
+                      : project.type === "Web3/AI"
+                        ? <Database size={24} />
+                        : <Layers size={24} />}
                   </div>
                   <div className="flex gap-3">
-                    <a href={project.github} className="p-2 text-slate-400 hover:text-white transition-colors">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-white transition-colors">
                       <Github size={20} />
                     </a>
-                    <a href={project.demo} className="p-2 text-slate-400 hover:text-white transition-colors">
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-white transition-colors">
                       <ExternalLink size={20} />
                     </a>
                   </div>

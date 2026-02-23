@@ -19,8 +19,8 @@ export const userData = {
       description: "Conquest IO: A high-stakes real-time strategy game featuring multi-base chain attacks, adaptive AI, and cross-platform support.",
       tech: ["JavaScript", "Socket.io", "Game Engine"],
       github: "https://github.com/nirgranthi/Conquerer_Ultimate",
-      demo: "https://github.com/nirgranthi/Conquerer_Ultimate",
-      type: "Game Dev"
+      demo: "https://conquerer.nirgranthi.in",
+      type: "Game Dev, Optimization"
     },
     {
       title: "Memecoin-Scraper",
@@ -32,8 +32,8 @@ export const userData = {
     },
     {
       title: "Local-Slave",
-      description: "Run small LLMs directly on your device, no cloud computing needed. Focused on privacy and edge computing.",
-      tech: ["JavaScript", "LLM", "WASM"],
+      description: "No High-End GPU? No problem. Run powerful LLMs directly in your browser. No cloud, no subscriptions, and 100% privacy.",
+      tech: ["JavaScript", "LLM", "WASM", "Wllama"],
       github: "https://github.com/nirgranthi/local-slave",
       demo: "https://local-slave.nirgranthi.in/",
       type: "AI/Tools"
