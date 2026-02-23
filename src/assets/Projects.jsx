@@ -1,4 +1,4 @@
-import { userData } from "./userDate";
+import { userData } from "./userData";
 import { ChevronRight, Terminal, Github, ExternalLink, Database, Layers } from "lucide-react";
 
 export const Projects = () => {

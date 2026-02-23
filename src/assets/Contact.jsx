@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { userData } from "./userDate";
+import { userData } from "./userData";
 import { Check, Copy, Mail, Instagram, Github } from "lucide-react";
 
 export const Contact = () => {
@@ -43,7 +43,9 @@ export const Contact = () => {
                 </div>
                 <div className="text-left">
                   <div className="text-slate-500 text-sm">Instagram</div>
-                  <a href={`https://www.instagram.com/${userData.instagram}`} target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:text-cyan-400">@{userData.instagram}</a>
+                  <a href={`https://www.instagram.com/${userData.instagram}`} target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:text-cyan-400">
+                    @{userData.instagram}
+                  </a>
                 </div>
               </div>
 
@@ -53,7 +55,9 @@ export const Contact = () => {
                 </div>
                 <div className="text-left">
                   <div className="text-slate-500 text-sm">GitHub</div>
-                  <a href={`https://github.com/${userData.username}`} target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:text-gray-400">@{userData.username}</a>
+                  <a href={`https://github.com/${userData.username}`} target="_blank" rel="noopener noreferrer" className="text-white font-medium hover:text-gray-400">
+                    @{userData.username}
+                  </a>
                 </div>
               </div>
             </div>

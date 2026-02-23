@@ -1,4 +1,4 @@
-import { userData } from "./userDate";
+import { userData } from "./userData";
 import { Github, Instagram } from "lucide-react";
 
 export const Hero = () => {

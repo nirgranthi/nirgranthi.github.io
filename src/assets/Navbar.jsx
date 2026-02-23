@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { userData } from "./userDate";
+import { userData } from "./userData";
 import { Menu, X } from "lucide-react";
 
 export const Navbar = () => {

@@ -6,18 +6,16 @@ export const userData = {
   title: "Full Stack Developer & AI Enthusiast",
   bio: "Building high-stakes RTS games, AI-driven scrapers, and local LLM solutions. I love exploring the intersection of systems programming and intelligent automation.",
   skills: [
-    { name: "JavaScript/TS", level: 90 },
-    { name: "React/Next.js", level: 85 },
-    { name: "Node.js", level: 80 },
-    { name: "AI/LLMs", level: 75 },
-    { name: "Solana/Web3", level: 70 },
-    { name: "Python", level: 85 }
+    { category: "Languages", items: ["JavaScript", "TypeScript", "Python", "HTML/CSS"] },
+    { category: "Frameworks & Libs", items: ["React", "Next.js", "Node.js", "Tailwind CSS"] },
+    { category: "AI & Web3", items: ["LLMs", "Wllama", "Solana API", "Web Scraping"] },
+    { category: "Tools", items: ["Git", "Linux", "Docker", "Vercel"] }
   ],
   projects: [
     {
       title: "Conquerer_Ultimate",
       description: "Conquest IO: A high-stakes real-time strategy game featuring multi-base chain attacks, adaptive AI, and cross-platform support.",
-      tech: ["JavaScript", "Socket.io", "Game Engine"],
+      tech: ["JavaScript", "Game Engine", "React"],
       github: "https://github.com/nirgranthi/Conquerer_Ultimate",
       demo: "https://conquerer.nirgranthi.in",
       type: "Game Dev, Optimization"
@@ -43,8 +41,13 @@ export const userData = {
       description: "Extensible web OS game and hacking simulator framework. Virtual OS experience with terminal and sandboxed gameplay.",
       tech: ["TypeScript", "React", "Linux Logic"],
       github: "https://github.com/nirgranthi/Aurora-OS.js",
-      demo: "#",
+      demo: "https://mental-os.github.io/Aurora-OS.js/",
       type: "Simulation"
     }
+  ],
+  stats: [
+    { label: "Projects Completed", value: "20+" },
+    { label: "Experience", value: "2 Years" },
+    { label: "Commit Count", value: "800+" },
   ]
 }

@@ -1,4 +1,4 @@
-import { userData } from "./userDate";
+import { userData } from "./userData";
 import { Mail, Github, Instagram } from "lucide-react";
 
 export const Footer = () => {
