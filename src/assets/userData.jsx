@@ -2,7 +2,7 @@ export const userData = {
   name: "Saurab",
   username: "Nirgranthi",
   instagram: "S.a.u.r.a.b_",
-  email: "",
+  email: "Nirgranthii@gmail.com",
   title: "Full Stack Developer & AI Enthusiast",
   bio: "Building high-stakes RTS games, AI-driven scrapers, and local LLM solutions. I love exploring the intersection of systems programming and intelligent automation.",
   skills: [
