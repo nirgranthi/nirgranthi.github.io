@@ -1,7 +1,25 @@
 import { userData } from "./userData";
 import { ChevronRight, Terminal, Github, ExternalLink, Database, Layers } from "lucide-react";
+import { BentoCard } from "./BentoCard";
 
 export const Projects = () => {
+  // Enhancing the project data with icons mapping for the BentoCard 
+  const formattedProjects = userData.projects.map((project, i) => {
+    let icon = <Layers size={24} />;
+    if (project.type === "Game Dev") icon = <Terminal size={24} />;
+    if (project.type === "Web3/AI") icon = <Database size={24} />;
+
+    return {
+      ...project,
+      icon,
+      githubIcon: <Github size={20} />,
+      demoIcon: <ExternalLink size={20} />,
+      // Dynamically assigning span classes for the bento layout. 
+      // For instance, every 3rd item spans 2 rows on large screens.
+      className: i === 0 || i === 3 ? "md:row-span-2" : "col-span-1",
+    };
+  });
+
   return (
     <section id="projects" className="py-24 px-6 bg-slate-950">
       <div className="max-w-7xl mx-auto">
@@ -15,43 +33,16 @@ export const Projects = () => {
           </a>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {userData.projects.map((project, i) => (
-            <div key={i} className="group relative bg-slate-900 border border-slate-800 rounded-3xl overflow-hidden hover:border-purple-500/50 transition-all duration-500">
-              <div className="p-8">
-                <div className="flex justify-between items-start mb-4">
-                  <div className="p-3 bg-purple-500/10 text-purple-400 rounded-2xl">
-                    {project.type === "Game Dev"
-                      ? <Terminal size={24} />
-                      : project.type === "Web3/AI"
-                        ? <Database size={24} />
-                        : <Layers size={24} />}
-                  </div>
-                  <div className="flex gap-3">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub Repository" className="p-2 text-slate-400 hover:text-white transition-colors">
-                      <Github size={20} />
-                    </a>
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer" aria-label="View Live Demo" className="p-2 text-slate-400 hover:text-white transition-colors">
-                      <ExternalLink size={20} />
-                    </a>
-                  </div>
-                </div>
-                <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
-                <p className="text-slate-400 mb-6 line-clamp-2">{project.description}</p>
-                <div className="flex flex-wrap gap-2">
-                  {project.tech.map((t, j) => (
-                    <span key={j} className="px-3 py-1 bg-slate-800 text-slate-300 text-xs rounded-lg border border-slate-700">
-                      {t}
-                    </span>
-                  ))}
-                </div>
-              </div>
-              {/* Hover Effect Light */}
-              <div className="absolute inset-0 bg-linear-to-tr from-purple-600/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-min gap-6">
+          {formattedProjects.map((project, i) => (
+            <BentoCard
+              key={i}
+              project={project}
+              className={project.className}
+            />
           ))}
         </div>
       </div>
     </section>
   );
-}
+};

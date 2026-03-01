@@ -43,6 +43,22 @@ export const userData = {
       github: "https://github.com/nirgranthi/Aurora-OS.js",
       demo: "https://mental-os.github.io/Aurora-OS.js/",
       type: "Simulation"
+    },
+    {
+      title: "Password-Bruteforcers",
+      description: "A collection of high-performance brute-force scripts designed for security research and password resilience testing.",
+      tech: ["Python", "Security", "Automation"],
+      github: "https://github.com/nirgranthi/password-bruteforcers",
+      demo: "https://github.com/nirgranthi/password-bruteforcers",
+      type: "Security/Research"
+    },
+    {
+      title: "Username-Hunter",
+      description: "An automated tool for high-speed discovery and availability checking of social media handles across multiple platforms.",
+      tech: ["Python", "Automation", "OSINT"],
+      github: "https://github.com/nirgranthi/Username-Hunter",
+      demo: "https://github.com/nirgranthi/Username-Hunter",
+      type: "Automation/Tools"
     }
   ],
   stats: [
