@@ -1,3 +1,11 @@
+import {
+  NeuralNetworkAnimation,
+  ScanningDataAnimation,
+  MatrixRainAnimation,
+  IsometricVoxelsAnimation,
+  RadarAnimation
+} from "./ProjectAnimations";
+
 export const userData = {
   name: "Saurab",
   username: "Nirgranthi",
@@ -18,7 +26,8 @@ export const userData = {
       tech: ["JavaScript", "Game Engine", "React"],
       github: "https://github.com/nirgranthi/Conquerer_Ultimate",
       demo: "https://conquerer.nirgranthi.in",
-      type: "Game Dev, Optimization"
+      type: "Game Dev, Optimization",
+      animation: <NeuralNetworkAnimation />
     },
     {
       title: "Memecoin-Scraper",
@@ -26,7 +35,8 @@ export const userData = {
       tech: ["HTML", "Solana API", "Python"],
       github: "https://github.com/nirgranthi/memecoin-scraper",
       demo: "https://github.com/nirgranthi/memecoin-scraper",
-      type: "Web3/AI"
+      type: "Web3/AI",
+      animation: <ScanningDataAnimation />
     },
     {
       title: "Local-Slave",
@@ -34,7 +44,8 @@ export const userData = {
       tech: ["JavaScript", "LLM", "WASM", "Wllama"],
       github: "https://github.com/nirgranthi/local-slave",
       demo: "https://local-slave.nirgranthi.in/",
-      type: "AI/Tools"
+      type: "AI/Tools",
+      animation: <MatrixRainAnimation />
     },
     {
       title: "Aurora-OS.js",
@@ -42,7 +53,8 @@ export const userData = {
       tech: ["TypeScript", "React", "Linux Logic"],
       github: "https://github.com/nirgranthi/Aurora-OS.js",
       demo: "https://mental-os.github.io/Aurora-OS.js/",
-      type: "Simulation"
+      type: "Simulation",
+      animation: <MatrixRainAnimation />
     },
     {
       title: "Password-Bruteforcers",
@@ -50,7 +62,8 @@ export const userData = {
       tech: ["Python", "Security", "Automation"],
       github: "https://github.com/nirgranthi/password-bruteforcers",
       demo: "https://github.com/nirgranthi/password-bruteforcers",
-      type: "Security/Research"
+      type: "Security/Research",
+      animation: <ScanningDataAnimation />
     },
     {
       title: "Username-Hunter",
@@ -58,7 +71,8 @@ export const userData = {
       tech: ["Python", "Automation", "OSINT"],
       github: "https://github.com/nirgranthi/Username-Hunter",
       demo: "https://github.com/nirgranthi/Username-Hunter",
-      type: "Automation/Tools"
+      type: "Automation/Tools",
+      animation: <RadarAnimation />
     }
   ],
   stats: [

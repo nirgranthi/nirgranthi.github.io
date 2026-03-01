@@ -2,12 +2,13 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 
 const terminalLogs = [
-    "Initializing Conquerer_Ultimate engine...",
+    "Initializing Conquerer_Ultimate... Teaching the AI to trash-talk....",
     "Loading Local-Slave WASM modules...",
     "Mounting Models on Local-Slave...",
     "Compiling Aurora-OS kernels...",
     "Connecting to Web3 infrastructure...",
-    "System ready. Awaiting commands..."
+    "Local-Slave is judging your prompts. Be nice.",
+    "System ready. Awaiting your questionable commands..."
 ];
 
 export const MiniTerminal = () => {
@@ -19,7 +20,7 @@ export const MiniTerminal = () => {
             const timeout = setTimeout(() => {
                 setLogs(prev => [...prev, terminalLogs[currentLogIndex]]);
                 setCurrentLogIndex(prev => prev + 1);
-            }, Math.random() * 1000 + 500); // Random delay between 500ms and 1500ms
+            }, Math.random() * 1000 + 1500); // Random delay between 500ms and 1500ms
 
             return () => clearTimeout(timeout);
         } else {
