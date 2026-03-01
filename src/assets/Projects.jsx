@@ -1,6 +1,7 @@
 import { userData } from "./userData";
 import { ChevronRight, Terminal, Github, ExternalLink, Database, Layers } from "lucide-react";
 import { BentoCard } from "./BentoCard";
+import { motion } from "framer-motion";
 
 export const Projects = () => {
   // Enhancing the project data with icons mapping for the BentoCard 
@@ -23,7 +24,13 @@ export const Projects = () => {
   return (
     <section id="projects" className="py-24 px-6 bg-slate-950">
       <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <motion.div
+          className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           <div>
             <h2 className="text-4xl font-bold text-white mb-4">Featured Projects</h2>
             <p className="text-slate-400">Selection of my personal and open-source contributions.</p>
@@ -31,7 +38,7 @@ export const Projects = () => {
           <a href={`https://github.com/${userData.username}?tab=repositories`} target="_blank" rel="noopener noreferrer" className="text-purple-400 flex items-center gap-2 hover:underline">
             View All GitHub <ChevronRight size={20} />
           </a>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 auto-rows-min gap-6">
           {formattedProjects.map((project, i) => (

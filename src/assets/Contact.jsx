@@ -2,6 +2,20 @@ import { useState } from "react";
 import { userData } from "./userData";
 import { Check, Copy, Mail, Instagram, Github } from "lucide-react";
 import { BackgroundGrid } from "./BackgroundGrid";
+import { motion } from "framer-motion";
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15 }
+  }
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.5 } }
+};
 
 export const Contact = () => {
   const [copied, setCopied] = useState(false);
@@ -23,17 +37,36 @@ export const Contact = () => {
       <BackgroundGrid />
 
       <div className="max-w-5xl mx-auto relative z-10 text-center">
-        <h2 className="text-5xl font-black text-white mb-6 tracking-tight">
+        <motion.h2
+          className="text-5xl font-black text-white mb-6 tracking-tight"
+          initial={{ opacity: 0, y: -20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
           Let's <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-cyan-400">Connect</span>.
-        </h2>
-        <p className="text-slate-400 mb-16 text-lg max-w-xl mx-auto">
+        </motion.h2>
+        <motion.p
+          className="text-slate-400 mb-16 text-lg max-w-xl mx-auto"
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
           I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
-        </p>
+        </motion.p>
 
-        <div className="grid sm:grid-cols-3 gap-6">
+        <motion.div
+          className="grid sm:grid-cols-3 gap-6"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-100px" }}
+        >
           {links.map((link, i) => (
-            <div
+            <motion.div
               key={i}
+              variants={itemVariants}
               onClick={link.action}
               className={`group cursor-pointer p-8 rounded-3xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 ${link.color}`}
             >
@@ -55,9 +88,9 @@ export const Contact = () => {
                   )}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
