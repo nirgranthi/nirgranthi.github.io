@@ -16,8 +16,8 @@ export const Projects = () => {
       githubIcon: <Github size={20} />,
       demoIcon: <ExternalLink size={20} />,
       // Dynamically assigning span classes for the bento layout. 
-      // For instance, every 3rd item spans 2 rows on large screens.
-      className: i === 0 || i === 3 ? "md:row-span-2" : "col-span-1",
+      // The first item spans 2 columns on large screens to have a featured look.
+      className: i === 0 ? "md:col-span-2" : "col-span-1",
     };
   });
 
