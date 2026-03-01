@@ -1,11 +1,11 @@
 import { userData } from "./userData";
 import { Github, Instagram } from "lucide-react";
+import { BackgroundGrid } from "./BackgroundGrid";
 
 export const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
-      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] animate-pulse"></div>
-      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-[120px] animate-pulse delay-700"></div>
+    <section className="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden bg-slate-950">
+      <BackgroundGrid />
 
       <div className="relative max-w-7xl mx-auto text-center z-10">
         <div className="inline-block px-4 py-1.5 mb-6 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium animate-bounce">

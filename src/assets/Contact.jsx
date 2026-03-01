@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { userData } from "./userData";
 import { Check, Copy, Mail, Instagram, Github } from "lucide-react";
+import { BackgroundGrid } from "./BackgroundGrid";
 
 export const Contact = () => {
   const [copied, setCopied] = useState(false);
@@ -19,21 +20,21 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="py-24 px-6 relative overflow-hidden bg-slate-950">
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-150 h-150 bg-purple-900/10 rounded-full blur-[120px] pointer-events-none"></div>
-      
+      <BackgroundGrid />
+
       <div className="max-w-5xl mx-auto relative z-10 text-center">
         <h2 className="text-5xl font-black text-white mb-6 tracking-tight">
           Let's <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-cyan-400">Connect</span>.
         </h2>
         <p className="text-slate-400 mb-16 text-lg max-w-xl mx-auto">
-          I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions. 
+          I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.
         </p>
-        
+
         <div className="grid sm:grid-cols-3 gap-6">
           {links.map((link, i) => (
-            <div 
-              key={i} 
-              onClick={link.action} 
+            <div
+              key={i}
+              onClick={link.action}
               className={`group cursor-pointer p-8 rounded-3xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 ${link.color}`}
             >
               <div className="flex flex-col items-center gap-5">
@@ -48,7 +49,7 @@ export const Contact = () => {
                     </a>
                   ) : (
                     <div className="text-white font-bold text-lg flex items-center justify-center gap-2">
-                      {link.value} 
+                      {link.value}
                       {copied ? <Check size={18} className="text-green-400" /> : <Copy size={18} className="text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity" />}
                     </div>
                   )}
