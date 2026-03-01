@@ -32,7 +32,7 @@ export const Navbar = () => {
                 </div>
 
                 {/* Mobile Toggle */}
-                <button className="md:hidden text-slate-300" onClick={() => setIsOpen(!isOpen)}>
+                <button aria-label="Toggle Menu" className="md:hidden text-slate-300" onClick={() => setIsOpen(!isOpen)}>
                     {isOpen ? <X /> : <Menu />}
                 </button>
             </div>

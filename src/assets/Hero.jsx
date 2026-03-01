@@ -22,10 +22,10 @@ export const Hero = () => {
             View My Work
           </a>
           <div className="flex gap-4">
-            <a href={`https://github.com/${userData.username}`} target="_blank" rel="noopener noreferrer" className="p-4 bg-slate-800/50 hover:bg-slate-800 text-white rounded-xl border border-slate-700 transition-all">
+            <a href={`https://github.com/${userData.username}`} target="_blank" rel="noopener noreferrer" aria-label="GitHub Profile" className="p-4 bg-slate-800/50 hover:bg-slate-800 text-white rounded-xl border border-slate-700 transition-all">
               <Github size={24} />
             </a>
-            <a href="https://www.instagram.com/s.a.u.r.a.b_/" target="_blank" rel="noopener noreferrer" className="p-4 bg-slate-800/50 hover:bg-slate-800 text-white rounded-xl border border-slate-700 transition-all">
+            <a href="https://www.instagram.com/s.a.u.r.a.b_/" target="_blank" rel="noopener noreferrer" aria-label="Instagram Profile" className="p-4 bg-slate-800/50 hover:bg-slate-800 text-white rounded-xl border border-slate-700 transition-all">
               <Instagram size={24} />
             </a>
           </div>

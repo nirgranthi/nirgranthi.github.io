@@ -28,10 +28,10 @@ export const Projects = () => {
                         : <Layers size={24} />}
                   </div>
                   <div className="flex gap-3">
-                    <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-white transition-colors">
+                    <a href={project.github} target="_blank" rel="noopener noreferrer" aria-label="View GitHub Repository" className="p-2 text-slate-400 hover:text-white transition-colors">
                       <Github size={20} />
                     </a>
-                    <a href={project.demo} target="_blank" rel="noopener noreferrer" className="p-2 text-slate-400 hover:text-white transition-colors">
+                    <a href={project.demo} target="_blank" rel="noopener noreferrer" aria-label="View Live Demo" className="p-2 text-slate-400 hover:text-white transition-colors">
                       <ExternalLink size={20} />
                     </a>
                   </div>
