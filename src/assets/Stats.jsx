@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 export const Stats = () => {
   const isNeo = activeStyle === "neobrutalism";
   const isSwiss = activeStyle === "swiss";
+  const isGlass = activeStyle === "glassmorphism";
   const bgColors = ["bg-[#FFC7EA]", "bg-[#BFF6C3]", "bg-[#FFEAA7]"];
 
   return (
@@ -15,14 +16,16 @@ export const Stats = () => {
             ? `text-center p-6 rounded-2xl ${bgColors[i % bgColors.length]} border-3 border-black shadow-[6px_6px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[9px_9px_0px_rgba(0,0,0,1)] transition-all duration-200`
             : isSwiss
               ? "text-center p-6 rounded-none bg-white border border-black hover:bg-neutral-50 transition-colors duration-200"
-              : "text-center p-6 rounded-2xl bg-slate-900/50 border border-slate-800"}
+              : isGlass
+                ? "glass-mid text-center p-6 rounded-2xl transition-all duration-300 hover:translate-y-[-2px]"
+                : "text-center p-6 rounded-2xl bg-slate-900/50 border border-slate-800"}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: i * 0.1 }}
         >
-          <div className={isNeo ? "text-3xl font-black text-black mb-1" : isSwiss ? "text-3xl font-black text-[#D82B27] mb-1" : "text-3xl font-bold text-white mb-1"}>{stat.value}</div>
-          <div className={isNeo ? "text-black/70 text-xs font-black uppercase tracking-wider" : isSwiss ? "text-black/80 text-[10px] font-bold uppercase tracking-widest" : "text-slate-500 text-sm uppercase tracking-widest"}>{stat.label}</div>
+          <div className={isNeo ? "text-3xl font-black text-black mb-1" : isSwiss ? "text-3xl font-black text-[#D82B27] mb-1" : isGlass ? "font-glass-serif text-3xl font-normal text-[#6B4EFF] mb-1 tracking-[-0.02em]" : "text-3xl font-bold text-white mb-1"}>{stat.value}</div>
+          <div className={isNeo ? "text-black/70 text-xs font-black uppercase tracking-wider" : isSwiss ? "text-black/80 text-[10px] font-bold uppercase tracking-widest" : isGlass ? "font-glass-sans text-[11px] font-semibold text-[#7A8C7C] uppercase tracking-widest" : "text-slate-500 text-sm uppercase tracking-widest"}>{stat.label}</div>
         </motion.div>
       ))}
     </div>

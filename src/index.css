@@ -1,1 +1,50 @@
 @import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap');
+
+/* Glassmorphism Design System classes */
+.glass-atmosphere {
+  background:
+    radial-gradient(ellipse 70% 60% at 80% 10%, rgba(180, 210, 185, 0.55) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 15% 85%, rgba(210, 195, 170, 0.4) 0%, transparent 55%),
+    linear-gradient(160deg, #F5F0E8 0%, #E8EDE3 45%, #DCE8DC 100%) !important;
+}
+
+.glass-strong {
+  background: rgba(255, 255, 255, 0.52) !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.68) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.9),
+    inset 0 -1px 0 rgba(255, 255, 255, 0.15),
+    0 8px 32px rgba(26, 46, 31, 0.06),
+    0 2px 8px rgba(26, 46, 31, 0.04) !important;
+}
+
+.glass-mid {
+  background: rgba(255, 255, 255, 0.38) !important;
+  backdrop-filter: blur(16px) !important;
+  -webkit-backdrop-filter: blur(16px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.55) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.8),
+    0 8px 24px rgba(26, 46, 31, 0.05) !important;
+}
+
+.glass-light {
+  background: rgba(255, 255, 255, 0.26) !important;
+  backdrop-filter: blur(10px) !important;
+  -webkit-backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.42) !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.6),
+    0 4px 12px rgba(26, 46, 31, 0.04) !important;
+}
+
+.font-glass-serif {
+  font-family: 'DM Serif Display', serif !important;
+}
+
+.font-glass-sans {
+  font-family: 'DM Sans', sans-serif !important;
+}

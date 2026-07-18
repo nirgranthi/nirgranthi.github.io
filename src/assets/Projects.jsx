@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 export const Projects = () => {
   const isNeo = activeStyle === "neobrutalism";
   const isSwiss = activeStyle === "swiss";
+  const isGlass = activeStyle === "glassmorphism";
 
   // Enhancing the project data with icons mapping for the BentoCard 
   const formattedProjects = userData.projects.map((project, i) => {
@@ -25,7 +26,7 @@ export const Projects = () => {
   });
 
   return (
-    <section id="projects" className={`py-24 px-6 ${isNeo ? 'bg-[#FFFDF6] border-t-4 border-black' : isSwiss ? 'bg-white border-t border-black' : 'bg-slate-950'}`}>
+    <section id="projects" className={`py-24 px-6 ${isNeo ? 'bg-[#FFFDF6] border-t-4 border-black' : isSwiss ? 'bg-white border-t border-black' : isGlass ? 'bg-transparent border-t border-white/50' : 'bg-slate-950'}`}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4"
@@ -35,8 +36,8 @@ export const Projects = () => {
           transition={{ duration: 0.6 }}
         >
           <div>
-            <h2 className={isNeo ? "text-4xl font-black text-black mb-4 uppercase tracking-wider" : isSwiss ? "text-4xl font-black text-black mb-4 uppercase tracking-tighter" : "text-4xl font-bold text-white mb-4"}>Featured Projects</h2>
-            <p className={isNeo || isSwiss ? "text-black/85 font-bold" : "text-slate-400"}>Selection of my personal and open-source contributions.</p>
+            <h2 className={isNeo ? "text-4xl font-black text-black mb-4 uppercase tracking-wider" : isSwiss ? "text-4xl font-black text-black mb-4 uppercase tracking-tighter" : isGlass ? "font-glass-serif text-4xl md:text-5xl text-[#1A2E1F] mb-4 tracking-[-0.02em]" : "text-4xl font-bold text-white mb-4"}>Featured Projects</h2>
+            <p className={isNeo || isSwiss ? "text-black/85 font-bold" : isGlass ? "font-glass-sans text-[#3D4F3F]" : "text-slate-400"}>Selection of my personal and open-source contributions.</p>
           </div>
           <a 
             href={`https://github.com/${userData.username}?tab=repositories`} 
@@ -46,7 +47,9 @@ export const Projects = () => {
               ? "flex items-center gap-2 px-5 py-2.5 bg-[#FFC7EA] hover:bg-[#FFA5D8] text-black font-black uppercase text-xs tracking-wider border-2 border-black rounded-lg shadow-[3px_3px_0px_rgba(0,0,0,1)] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] transition-all" 
               : isSwiss
                 ? "flex items-center gap-2 px-5 py-2.5 bg-black hover:bg-[#D82B27] text-white font-bold uppercase text-xs tracking-widest border border-black rounded-none transition-colors duration-200"
-                : "text-purple-400 flex items-center gap-2 hover:underline"}>
+                : isGlass
+                  ? "flex items-center gap-2 px-5 py-2.5 bg-[#6B4EFF]/10 hover:bg-[#6B4EFF]/16 text-[#6B4EFF] font-glass-sans font-bold uppercase text-xs tracking-widest border border-[#6B4EFF]/25 rounded-xl transition-all duration-200 hover:translate-y-[-2px]"
+                  : "text-purple-400 flex items-center gap-2 hover:underline"}>
             View All GitHub <ChevronRight size={20} />
           </a>
         </motion.div>

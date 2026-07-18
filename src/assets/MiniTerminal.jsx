@@ -17,6 +17,7 @@ export const MiniTerminal = () => {
     const [currentLogIndex, setCurrentLogIndex] = useState(0);
     const isNeo = activeStyle === "neobrutalism";
     const isSwiss = activeStyle === "swiss";
+    const isGlass = activeStyle === "glassmorphism";
 
     useEffect(() => {
         if (currentLogIndex < terminalLogs.length) {
@@ -42,7 +43,9 @@ export const MiniTerminal = () => {
                 ? "w-full max-w-md bg-white border-3 sm:border-4 border-black rounded-2xl overflow-hidden shadow-[6px_6px_0px_rgba(0,0,0,1)] font-mono text-xs sm:text-sm text-black text-left"
                 : isSwiss
                     ? "w-full max-w-md bg-white border border-black rounded-none overflow-hidden font-mono text-xs sm:text-sm text-black text-left"
-                    : "w-full max-w-md bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-xl overflow-hidden shadow-2xl font-mono text-xs sm:text-sm text-green-400 text-left"}
+                    : isGlass
+                        ? "w-full max-w-md glass-strong rounded-2xl overflow-hidden font-mono text-xs sm:text-sm text-[#1A2E1F] text-left"
+                        : "w-full max-w-md bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-xl overflow-hidden shadow-2xl font-mono text-xs sm:text-sm text-green-400 text-left"}
             initial={{ opacity: 0, scale: 0.9, x: 20 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
@@ -52,13 +55,21 @@ export const MiniTerminal = () => {
                 ? "flex items-center px-4 py-3 bg-[#FFDE4D] border-b-3 sm:border-b-4 border-black"
                 : isSwiss
                     ? "flex items-center px-4 py-2.5 bg-black border-b border-black text-white"
-                    : "flex items-center px-4 py-2 bg-slate-800/80 border-b border-slate-700"}>
+                    : isGlass
+                        ? "flex items-center px-4 py-2.5 bg-white/40 border-b border-white/50"
+                        : "flex items-center px-4 py-2 bg-slate-800/80 border-b border-slate-700"}>
                 <div className="flex space-x-2">
                     {isSwiss ? (
                         <>
                             <div className="w-2.5 h-2.5 bg-[#D82B27]"></div>
                             <div className="w-2.5 h-2.5 bg-white"></div>
                             <div className="w-2.5 h-2.5 bg-neutral-600"></div>
+                        </>
+                    ) : isGlass ? (
+                        <>
+                            <div className="w-3 h-3 rounded-full bg-red-500/70 border border-red-600/40"></div>
+                            <div className="w-3 h-3 rounded-full bg-yellow-500/70 border border-yellow-600/40"></div>
+                            <div className="w-3 h-3 rounded-full bg-green-500/70 border border-green-600/40"></div>
                         </>
                     ) : (
                         <>
@@ -72,25 +83,27 @@ export const MiniTerminal = () => {
                     ? "ml-4 text-black font-black text-xs uppercase tracking-wider" 
                     : isSwiss
                         ? "ml-4 text-white font-bold text-[10px] uppercase tracking-widest"
-                        : "ml-4 text-slate-400 text-xs"}>system_boot.sh</div>
+                        : isGlass
+                            ? "ml-4 text-[#3D4F3F] text-xs font-semibold"
+                            : "ml-4 text-slate-400 text-xs"}>system_boot.sh</div>
             </div>
 
             {/* Terminal Body */}
-            <div className={`p-4 h-48 overflow-y-auto flex flex-col justify-end space-y-1 ${isNeo ? 'bg-[#FFFDF6]' : isSwiss ? 'bg-[#F9F9F9]' : ''}`}>
+            <div className={`p-4 h-48 overflow-y-auto flex flex-col justify-end space-y-1 ${isNeo ? 'bg-[#FFFDF6]' : isSwiss ? 'bg-[#F9F9F9]' : isGlass ? 'bg-white/20' : ''}`}>
                 {logs.map((log, index) => (
                     <motion.div
                         key={index}
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                     >
-                        <span className={isNeo ? "text-purple-800 font-bold" : isSwiss ? "text-[#D82B27] font-bold" : "text-purple-400"}>root@nirgranthi:~$</span> {log}
+                        <span className={isNeo ? "text-purple-800 font-bold" : isSwiss ? "text-[#D82B27] font-bold" : isGlass ? "text-[#6B4EFF] font-bold" : "text-purple-400"}>root@nirgranthi:~$</span> {log}
                     </motion.div>
                 ))}
                 {currentLogIndex < terminalLogs.length && (
                     <motion.div
                         animate={{ opacity: [1, 0] }}
                         transition={{ repeat: Infinity, duration: 0.8 }}
-                        className={`w-2 h-4 inline-block align-middle ml-1 ${isNeo ? 'bg-black' : isSwiss ? 'bg-[#D82B27]' : 'bg-green-400'}`}
+                        className={`w-2 h-4 inline-block align-middle ml-1 ${isNeo ? 'bg-black' : isSwiss ? 'bg-[#D82B27]' : isGlass ? 'bg-[#6B4EFF]' : 'bg-green-400'}`}
                     />
                 )}
             </div>

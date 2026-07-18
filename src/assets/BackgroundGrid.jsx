@@ -6,6 +6,7 @@ export const BackgroundGrid = () => {
     const containerRef = useRef(null);
     const isNeo = activeStyle === 'neobrutalism';
     const isSwiss = activeStyle === 'swiss';
+    const isGlass = activeStyle === 'glassmorphism';
 
     useEffect(() => {
         if (isNeo || isSwiss) return; // No mouse move tracking needed for static grids
@@ -42,6 +43,41 @@ export const BackgroundGrid = () => {
                     backgroundSize: '60px 60px'
                 }}
             />
+        );
+    }
+
+    if (isGlass) {
+        return (
+            <div
+                ref={containerRef}
+                className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-transparent"
+            >
+                {/* Thin, elegant, semi-transparent line grid */}
+                <svg
+                    className="absolute inset-0 h-full w-full opacity-60"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <defs>
+                        <pattern
+                            id="glass-grid-pattern"
+                            width="80"
+                            height="80"
+                            patternUnits="userSpaceOnUse"
+                        >
+                            <path d="M0 80V.5H80" fill="none" stroke="rgba(26,46,31,0.04)" strokeWidth="0.5" />
+                        </pattern>
+                    </defs>
+                    <rect width="100%" height="100%" fill="url(#glass-grid-pattern)" />
+                </svg>
+
+                {/* Soft interactive mouse beam */}
+                <div
+                    className="absolute inset-0 transition-opacity duration-300 z-10 mix-blend-screen"
+                    style={{
+                        background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, rgba(255, 255, 255, 0.5), transparent 50%)`
+                    }}
+                />
+            </div>
         );
     }
 
