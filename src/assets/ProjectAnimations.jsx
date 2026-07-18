@@ -69,14 +69,14 @@ export const NeuralNetworkAnimation = () => (
             <line x1="50%" y1="20%" x2="60%" y2="80%" stroke="rgba(148,163,184,0.2)" strokeWidth="1" />
             <line x1="20%" y1="30%" x2="80%" y2="40%" stroke="rgba(148,163,184,0.2)" strokeWidth="1" />
 
-            <motion.circle r="3" fill="#a855f7"
+            <motion.circle cx="20%" cy="30%" r="3" fill="#a855f7"
                 animate={{
                     cx: ["20%", "50%", "80%", "60%", "30%", "20%"],
                     cy: ["30%", "20%", "40%", "80%", "70%", "30%"]
                 }}
                 transition={{ repeat: Infinity, duration: 8, ease: "easeInOut" }}
             />
-            <motion.circle r="2" fill="#22d3ee"
+            <motion.circle cx="80%" cy="40%" r="2" fill="#22d3ee"
                 animate={{
                     cx: ["80%", "50%", "20%", "30%", "60%", "80%"],
                     cy: ["40%", "20%", "30%", "70%", "80%", "40%"]
