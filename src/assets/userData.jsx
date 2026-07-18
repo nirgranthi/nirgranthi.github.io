@@ -39,7 +39,7 @@ export const userData = {
       animation: <ScanningDataAnimation />
     },
     {
-      title: "Local-Slave",
+      title: "Local LLM Client Interface",
       description: "No High-End GPU? No problem. Run powerful LLMs directly in your browser. No cloud, no subscriptions, and 100% privacy.",
       tech: ["JavaScript", "LLM", "WASM", "Wllama"],
       github: "https://github.com/nirgranthi/local-slave",
