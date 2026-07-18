@@ -4,11 +4,11 @@ import { activeStyle } from "./userData";
 
 const terminalLogs = [
     "Initializing Conquerer_Ultimate... Teaching the AI to trash-talk....",
-    "Loading Local-Slave WASM modules...",
-    "Mounting Models on Local-Slave...",
+    "Loading Local-LLM WASM modules...",
+    "Mounting Models on Local-LLM...",
     "Compiling Aurora-OS kernels...",
     "Connecting to Web3 infrastructure...",
-    "Local-Slave is judging your prompts. Be nice.",
+    "Local-LLM is judging your prompts. Be nice.",
     "System ready. Awaiting your questionable commands..."
 ];
 
@@ -90,8 +90,8 @@ export const MiniTerminal = () => {
                         </>
                     )}
                 </div>
-                <div className={isNeo 
-                    ? "ml-4 text-black font-black text-xs uppercase tracking-wider" 
+                <div className={isNeo
+                    ? "ml-4 text-black font-black text-xs uppercase tracking-wider"
                     : isSwiss
                         ? "ml-4 text-white font-bold text-[10px] uppercase tracking-widest"
                         : isGlass
@@ -102,8 +102,8 @@ export const MiniTerminal = () => {
             </div>
 
             {/* Terminal Body */}
-            <div className={isNeomorphic 
-                ? "p-4 h-44 overflow-y-auto flex flex-col justify-end space-y-1 neo-sunken m-2 text-[#2d3748] font-neo-body" 
+            <div className={isNeomorphic
+                ? "p-4 h-44 overflow-y-auto flex flex-col justify-end space-y-1 neo-sunken m-2 text-[#2d3748] font-neo-body"
                 : `p-4 h-48 overflow-y-auto flex flex-col justify-end space-y-1 ${isNeo ? 'bg-[#FFFDF6]' : isSwiss ? 'bg-[#F9F9F9]' : isGlass ? 'bg-white/20' : ''}`}>
                 {logs.map((log, index) => (
                     <motion.div
