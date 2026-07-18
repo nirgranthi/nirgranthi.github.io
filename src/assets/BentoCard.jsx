@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { uiChanger } from "./userData";
 
 function cn(...inputs) {
     return twMerge(clsx(inputs));
@@ -12,9 +13,10 @@ export const BentoCard = ({ project, className }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [opacity, setOpacity] = useState(0);
+    const isNeo = uiChanger === "neobrutalism";
 
     const handleMouseMove = (e) => {
-        if (!divRef.current || isFocused) return;
+        if (!divRef.current || isFocused || isNeo) return;
 
         const div = divRef.current;
         const rect = div.getBoundingClientRect();
@@ -23,20 +25,24 @@ export const BentoCard = ({ project, className }) => {
     };
 
     const handleFocus = () => {
+        if (isNeo) return;
         setIsFocused(true);
         setOpacity(1);
     };
 
     const handleBlur = () => {
+        if (isNeo) return;
         setIsFocused(false);
         setOpacity(0);
     };
 
     const handleMouseEnter = () => {
+        if (isNeo) return;
         setOpacity(1);
     };
 
     const handleMouseLeave = () => {
+        if (isNeo) return;
         setOpacity(0);
     };
 
@@ -49,7 +55,9 @@ export const BentoCard = ({ project, className }) => {
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
             className={cn(
-                "relative rounded-3xl border border-slate-800 bg-slate-900 overflow-hidden group",
+                isNeo
+                    ? "relative rounded-3xl border-3 sm:border-4 border-black bg-white overflow-hidden group shadow-[6px_6px_0px_rgba(0,0,0,1)] hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[10px_10px_0px_rgba(0,0,0,1)] transition-all duration-200"
+                    : "relative rounded-3xl border border-slate-800 bg-slate-900 overflow-hidden group",
                 className
             )}
             initial={{ opacity: 0, y: 20 }}
@@ -57,27 +65,43 @@ export const BentoCard = ({ project, className }) => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
         >
-            <div
-                className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
-                style={{
-                    opacity,
-                    background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(168,85,247,.1), transparent 40%)`,
-                }}
-            />
+            {!isNeo && (
+                <div
+                    className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
+                    style={{
+                        opacity,
+                        background: `radial-gradient(600px circle at ${position.x}px ${position.y}px, rgba(168,85,247,.1), transparent 40%)`,
+                    }}
+                />
+            )}
             <div className="relative flex h-full flex-col justify-between p-8 z-10">
                 <div>
                     <div className="flex justify-between items-start mb-6">
-                        <div className="p-3 bg-slate-800/50 text-slate-300 rounded-2xl group-hover:bg-purple-500/10 group-hover:text-purple-400 transition-colors">
+                        <div className={isNeo
+                            ? "p-3 bg-[#FFDE4D] text-black border-2 border-black rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)]"
+                            : "p-3 bg-slate-800/50 text-slate-300 rounded-2xl group-hover:bg-purple-500/10 group-hover:text-purple-400 transition-colors"}>
                             {project.icon}
                         </div>
                         <div className="flex gap-3">
                             {project.github && (
-                                <a href={project.github} target="_blank" rel="noopener noreferrer" className="p-2 text-slate-500 hover:text-white transition-colors bg-slate-950/50 rounded-full backdrop-blur-md">
+                                <a 
+                                    href={project.github} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className={isNeo
+                                        ? "p-2.5 text-black bg-white border-2 border-black rounded-full shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-[#FFC7EA] active:translate-y-[2px] active:shadow-none transition-all"
+                                        : "p-2 text-slate-500 hover:text-white transition-colors bg-slate-950/50 rounded-full backdrop-blur-md"}>
                                     {project.githubIcon}
                                 </a>
                             )}
                             {project.demo && (
-                                <a href={project.demo} target="_blank" rel="noopener noreferrer" className="p-2 text-slate-500 hover:text-white transition-colors bg-slate-950/50 rounded-full backdrop-blur-md">
+                                <a 
+                                    href={project.demo} 
+                                    target="_blank" 
+                                    rel="noopener noreferrer" 
+                                    className={isNeo
+                                        ? "p-2.5 text-black bg-white border-2 border-black rounded-full shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-[#FFC7EA] active:translate-y-[2px] active:shadow-none transition-all"
+                                        : "p-2 text-slate-500 hover:text-white transition-colors bg-slate-950/50 rounded-full backdrop-blur-md"}>
                                     {project.demoIcon}
                                 </a>
                             )}
@@ -85,23 +109,37 @@ export const BentoCard = ({ project, className }) => {
                     </div>
 
                     {/* Image / Mockup Area */}
-                    <div className="w-full aspect-video bg-slate-900/40 backdrop-blur-md rounded-xl mb-6 overflow-hidden relative border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]">
+                    <div className={isNeo
+                        ? "w-full aspect-video bg-[#FFFDF6] border-2 border-black rounded-xl mb-6 overflow-hidden relative"
+                        : "w-full aspect-video bg-slate-900/40 backdrop-blur-md rounded-xl mb-6 overflow-hidden relative border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"}>
                         {project.image ? (
                             <img src={project.image} alt={`${project.title} preview`} className="w-full h-full object-cover" />
                         ) : (
-                            <div className="w-full h-full flex items-center justify-center relative overflow-hidden bg-linear-to-br from-slate-800/50 to-slate-900/50">
+                            <div className={cn(
+                                "w-full h-full flex items-center justify-center relative overflow-hidden",
+                                isNeo ? "bg-linear-to-br from-[#FFEAA7]/40 to-[#FFFDF6]" : "bg-linear-to-br from-slate-800/50 to-slate-900/50"
+                            )}>
                                 {project.animation}
                             </div>
                         )}
                     </div>
 
-                    <h3 className="text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors">{project.title}</h3>
-                    <p className="text-slate-400 mb-6">{project.description}</p>
+                    <h3 className={isNeo
+                        ? "text-2xl font-black text-black mb-3 group-hover:text-[#590696] transition-colors"
+                        : "text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors"}>{project.title}</h3>
+                    <p className={isNeo ? "text-black/80 font-bold mb-6" : "text-slate-400 mb-6"}>{project.description}</p>
                 </div>
 
-                <div className="flex flex-wrap gap-2 mt-auto pt-6 border-t border-slate-800/50">
+                <div className={cn(
+                    "flex flex-wrap gap-2 mt-auto pt-6",
+                    isNeo ? "border-t-2 border-black" : "border-t border-slate-800/50"
+                )}>
                     {project.tech.map((t, j) => (
-                        <span key={j} className="px-3 py-1 bg-slate-950/50 text-slate-400 text-xs rounded-lg border border-slate-800 backdrop-blur-sm transition-colors group-hover:border-slate-700">
+                        <span 
+                            key={j} 
+                            className={isNeo
+                                ? "px-3 py-1 bg-[#BFF6C3] text-black text-xs font-black rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-[#A3ECA8] transition-all"
+                                : "px-3 py-1 bg-slate-950/50 text-slate-400 text-xs rounded-lg border border-slate-800 backdrop-blur-sm transition-colors group-hover:border-slate-700"}>
                             {t}
                         </span>
                     ))}

@@ -6,6 +6,9 @@ import {
   RadarAnimation
 } from "./ProjectAnimations";
 
+// Set to "default" or "neobrutalism" to toggle the portfolio theme style
+export const uiChanger = "neobrutalism";
+
 export const userData = {
   name: "Saurab",
   username: "Nirgranthi",

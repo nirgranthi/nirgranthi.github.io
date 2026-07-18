@@ -1,10 +1,13 @@
 import { useEffect, useRef, useState } from "react";
+import { uiChanger } from "./userData";
 
 export const BackgroundGrid = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const containerRef = useRef(null);
+    const isNeo = uiChanger === 'neobrutalism';
 
     useEffect(() => {
+        if (isNeo) return; // No mouse move tracking needed for simple dot grid
         const handleWindowMouseMove = (e) => {
             if (!containerRef.current) return;
             const rect = containerRef.current.getBoundingClientRect();
@@ -15,7 +18,19 @@ export const BackgroundGrid = () => {
         };
         window.addEventListener("mousemove", handleWindowMouseMove);
         return () => window.removeEventListener("mousemove", handleWindowMouseMove);
-    }, []);
+    }, [isNeo]);
+
+    if (isNeo) {
+        return (
+            <div
+                className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-[#FFFDF6]"
+                style={{
+                    backgroundImage: 'radial-gradient(rgba(0, 0, 0, 0.12) 1.5px, transparent 1.5px)',
+                    backgroundSize: '30px 30px'
+                }}
+            />
+        );
+    }
 
     return (
         <div

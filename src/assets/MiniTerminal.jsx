@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { uiChanger } from "./userData";
 
 const terminalLogs = [
     "Initializing Conquerer_Ultimate... Teaching the AI to trash-talk....",
@@ -14,6 +15,7 @@ const terminalLogs = [
 export const MiniTerminal = () => {
     const [logs, setLogs] = useState([]);
     const [currentLogIndex, setCurrentLogIndex] = useState(0);
+    const isNeo = uiChanger === "neobrutalism";
 
     useEffect(() => {
         if (currentLogIndex < terminalLogs.length) {
@@ -35,37 +37,41 @@ export const MiniTerminal = () => {
 
     return (
         <motion.div
-            className="w-full max-w-md bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-xl overflow-hidden shadow-2xl font-mono text-xs sm:text-sm text-green-400 text-left"
+            className={isNeo
+                ? "w-full max-w-md bg-white border-3 sm:border-4 border-black rounded-2xl overflow-hidden shadow-[6px_6px_0px_rgba(0,0,0,1)] font-mono text-xs sm:text-sm text-black text-left"
+                : "w-full max-w-md bg-slate-900/80 backdrop-blur-md border border-slate-700 rounded-xl overflow-hidden shadow-2xl font-mono text-xs sm:text-sm text-green-400 text-left"}
             initial={{ opacity: 0, scale: 0.9, x: 20 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 0.6, delay: 0.8 }}
         >
             {/* Terminal Header */}
-            <div className="flex items-center px-4 py-2 bg-slate-800/80 border-b border-slate-700">
+            <div className={isNeo
+                ? "flex items-center px-4 py-3 bg-[#FFDE4D] border-b-3 sm:border-b-4 border-black"
+                : "flex items-center px-4 py-2 bg-slate-800/80 border-b border-slate-700"}>
                 <div className="flex space-x-2">
-                    <div className="w-3 h-3 rounded-full bg-red-500/80"></div>
-                    <div className="w-3 h-3 rounded-full bg-yellow-500/80"></div>
-                    <div className="w-3 h-3 rounded-full bg-green-500/80"></div>
+                    <div className={`w-3 h-3 rounded-full ${isNeo ? 'bg-[#FF5F9E] border-2 border-black' : 'bg-red-500/80'}`}></div>
+                    <div className={`w-3 h-3 rounded-full ${isNeo ? 'bg-[#FFDE4D] border-2 border-black' : 'bg-yellow-500/80'}`}></div>
+                    <div className={`w-3 h-3 rounded-full ${isNeo ? 'bg-[#38E54D] border-2 border-black' : 'bg-green-500/80'}`}></div>
                 </div>
-                <div className="ml-4 text-slate-400 text-xs">system_boot.sh</div>
+                <div className={isNeo ? "ml-4 text-black font-black text-xs uppercase tracking-wider" : "ml-4 text-slate-400 text-xs"}>system_boot.sh</div>
             </div>
 
             {/* Terminal Body */}
-            <div className="p-4 h-48 overflow-y-auto flex flex-col justify-end space-y-1">
+            <div className={`p-4 h-48 overflow-y-auto flex flex-col justify-end space-y-1 ${isNeo ? 'bg-[#FFFDF6]' : ''}`}>
                 {logs.map((log, index) => (
                     <motion.div
                         key={index}
                         initial={{ opacity: 0, y: 5 }}
                         animate={{ opacity: 1, y: 0 }}
                     >
-                        <span className="text-purple-400">root@nirgranthi:~$</span> {log}
+                        <span className={isNeo ? "text-purple-800 font-bold" : "text-purple-400"}>root@nirgranthi:~$</span> {log}
                     </motion.div>
                 ))}
                 {currentLogIndex < terminalLogs.length && (
                     <motion.div
                         animate={{ opacity: [1, 0] }}
                         transition={{ repeat: Infinity, duration: 0.8 }}
-                        className="w-2 h-4 bg-green-400 inline-block align-middle ml-1"
+                        className={`w-2 h-4 inline-block align-middle ml-1 ${isNeo ? 'bg-black' : 'bg-green-400'}`}
                     />
                 )}
             </div>
