@@ -1,5 +1,6 @@
 @import 'tailwindcss';
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&family=Inter:wght@100..900&display=swap');
 
 /* Glassmorphism Design System classes */
 .glass-atmosphere {
@@ -47,4 +48,111 @@
 
 .font-glass-sans {
   font-family: 'DM Sans', sans-serif !important;
+}
+
+/* Neomorphism Design System CSS variables */
+:root {
+  --neo-light-bg: #e0e5ec;
+  --neo-light-highlight: #ffffff;
+  --neo-light-shadow: #a3b1c6;
+  --neo-accent-color: #2f66ff;
+  --neo-physics-curve: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.neo-raised-heavy {
+  border-radius: 24px;
+  background: var(--neo-light-bg) !important;
+  box-shadow: 
+    -12px -12px 24px var(--neo-light-highlight),
+    12px 12px 24px var(--neo-light-shadow) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+.neo-raised-soft {
+  border-radius: 12px;
+  background: var(--neo-light-bg) !important;
+  box-shadow: 
+    -6px -6px 12px var(--neo-light-highlight),
+    6px 6px 12px var(--neo-light-shadow) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+
+.neo-sunken {
+  border-radius: 8px;
+  background: var(--neo-light-bg) !important;
+  box-shadow: 
+    inset -4px -4px 8px var(--neo-light-highlight),
+    inset 4px 4px 8px var(--neo-light-shadow) !important;
+  border: none !important;
+}
+
+.neo-btn {
+  padding: 12px 24px;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  border-radius: 12px;
+  background: var(--neo-light-bg) !important;
+  box-shadow: 
+    -5px -5px 10px var(--neo-light-highlight),
+    5px 5px 10px var(--neo-light-shadow) !important;
+  transform: translateY(0);
+  transition: 
+    transform 0.15s var(--neo-physics-curve), 
+    box-shadow 0.15s var(--neo-physics-curve), 
+    background-color 0.2s ease !important;
+}
+
+.neo-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    -7px -7px 14px var(--neo-light-highlight),
+    7px 7px 14px var(--neo-light-shadow) !important;
+}
+
+.neo-btn:active {
+  transform: translateY(0);
+  box-shadow: 
+    inset -3px -3px 6px var(--neo-light-highlight),
+    inset 3px 3px 6px var(--neo-light-shadow) !important;
+}
+
+.neo-btn-accent {
+  background: var(--neo-accent-color) !important;
+  color: #ffffff !important;
+  box-shadow: 
+    -4px -4px 12px rgba(47, 102, 255, 0.25),
+    4px 4px 12px rgba(163, 177, 198, 0.4) !important;
+  transition: transform 0.15s var(--neo-physics-curve), box-shadow 0.15s var(--neo-physics-curve) !important;
+}
+
+.neo-btn-accent:hover {
+  transform: translateY(-2px);
+  background: #1a52ee !important;
+  box-shadow: 
+    -6px -6px 16px rgba(47, 102, 255, 0.35),
+    6px 6px 16px rgba(163, 177, 198, 0.5) !important;
+}
+
+.neo-btn-accent:active {
+  transform: translateY(0);
+  background: #0f40d4 !important;
+  box-shadow: 
+    inset -2px -2px 6px rgba(255, 255, 255, 0.3),
+    inset 2px 2px 6px rgba(0, 0, 0, 0.3) !important;
+}
+
+.neo-text-engraved {
+  color: rgba(45, 55, 72, 0.7) !important;
+  text-shadow: 
+    -1px -1px 0px var(--neo-light-highlight), 
+    1px 1px 0px var(--neo-light-shadow) !important;
+}
+
+.font-neo-display {
+  font-family: 'Space Grotesk', sans-serif !important;
+}
+
+.font-neo-body {
+  font-family: 'Inter', sans-serif !important;
 }

@@ -7,9 +7,10 @@ export const BackgroundGrid = () => {
     const isNeo = activeStyle === 'neobrutalism';
     const isSwiss = activeStyle === 'swiss';
     const isGlass = activeStyle === 'glassmorphism';
+    const isNeomorphic = activeStyle === 'neomorphism';
 
     useEffect(() => {
-        if (isNeo || isSwiss) return; // No mouse move tracking needed for static grids
+        if (isNeo || isSwiss || isNeomorphic) return; // No mouse move tracking needed for static grids
         const handleWindowMouseMove = (e) => {
             if (!containerRef.current) return;
             const rect = containerRef.current.getBoundingClientRect();
@@ -45,6 +46,8 @@ export const BackgroundGrid = () => {
             />
         );
     }
+
+    if (isNeomorphic) return null;
 
     if (isGlass) {
         return (

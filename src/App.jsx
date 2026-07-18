@@ -11,6 +11,7 @@ export default function App() {
   const isNeo = activeStyle === 'neobrutalism';
   const isSwiss = activeStyle === 'swiss';
   const isGlass = activeStyle === 'glassmorphism';
+  const isNeomorphic = activeStyle === 'neomorphism';
 
   return (
     <div className={
@@ -20,7 +21,9 @@ export default function App() {
           ? "min-h-screen bg-white font-sans text-black selection:bg-[#D82B27] selection:text-white scroll-smooth rounded-none"
           : isGlass
             ? "min-h-screen glass-atmosphere font-glass-sans text-[#1A2E1F] selection:bg-[#6B4EFF]/20 selection:text-[#1A2E1F] scroll-smooth relative"
-            : "min-h-screen bg-slate-950 font-sans selection:bg-purple-500 selection:text-white scroll-smooth"
+            : isNeomorphic
+              ? "min-h-screen bg-[#e0e5ec] font-neo-body text-[#2d3748] selection:bg-[#2f66ff]/20 selection:text-[#1a202c] scroll-smooth relative"
+              : "min-h-screen bg-slate-950 font-sans selection:bg-purple-500 selection:text-white scroll-smooth"
     }>
       {isGlass && (
         <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">

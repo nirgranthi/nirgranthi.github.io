@@ -5,6 +5,7 @@ export const Stats = () => {
   const isNeo = activeStyle === "neobrutalism";
   const isSwiss = activeStyle === "swiss";
   const isGlass = activeStyle === "glassmorphism";
+  const isNeomorphic = activeStyle === "neomorphism";
   const bgColors = ["bg-[#FFC7EA]", "bg-[#BFF6C3]", "bg-[#FFEAA7]"];
 
   return (
@@ -18,14 +19,16 @@ export const Stats = () => {
               ? "text-center p-6 rounded-none bg-white border border-black hover:bg-neutral-50 transition-colors duration-200"
               : isGlass
                 ? "glass-mid text-center p-6 rounded-2xl transition-all duration-300 hover:translate-y-[-2px]"
-                : "text-center p-6 rounded-2xl bg-slate-900/50 border border-slate-800"}
+                : isNeomorphic
+                  ? "neo-raised-soft text-center p-6 transition-all duration-300 hover:translate-y-[-2px]"
+                  : "text-center p-6 rounded-2xl bg-slate-900/50 border border-slate-800"}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.5, delay: i * 0.1 }}
         >
-          <div className={isNeo ? "text-3xl font-black text-black mb-1" : isSwiss ? "text-3xl font-black text-[#D82B27] mb-1" : isGlass ? "font-glass-serif text-3xl font-normal text-[#6B4EFF] mb-1 tracking-[-0.02em]" : "text-3xl font-bold text-white mb-1"}>{stat.value}</div>
-          <div className={isNeo ? "text-black/70 text-xs font-black uppercase tracking-wider" : isSwiss ? "text-black/80 text-[10px] font-bold uppercase tracking-widest" : isGlass ? "font-glass-sans text-[11px] font-semibold text-[#7A8C7C] uppercase tracking-widest" : "text-slate-500 text-sm uppercase tracking-widest"}>{stat.label}</div>
+          <div className={isNeo ? "text-3xl font-black text-black mb-1" : isSwiss ? "text-3xl font-black text-[#D82B27] mb-1" : isGlass ? "font-glass-serif text-3xl font-normal text-[#6B4EFF] mb-1 tracking-[-0.02em]" : isNeomorphic ? "font-neo-display text-3xl font-bold text-[#2f66ff] mb-1 tracking-[-0.02em]" : "text-3xl font-bold text-white mb-1"}>{stat.value}</div>
+          <div className={isNeo ? "text-black/70 text-xs font-black uppercase tracking-wider" : isSwiss ? "text-black/80 text-[10px] font-bold uppercase tracking-widest" : isGlass ? "font-glass-sans text-[11px] font-semibold text-[#7A8C7C] uppercase tracking-widest" : isNeomorphic ? "font-neo-body text-[11px] font-bold text-[#4a5568] uppercase tracking-widest" : "text-slate-500 text-sm uppercase tracking-widest"}>{stat.label}</div>
         </motion.div>
       ))}
     </div>

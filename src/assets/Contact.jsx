@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { userData, activeStyle } from "./userData";
-import { Check, Copy, Mail, Instagram, Github } from "lucide-react";
+import { Check, Copy, Mail, Instagram, Github, Phone } from "lucide-react";
 import { BackgroundGrid } from "./BackgroundGrid";
 import { motion } from "framer-motion";
 
@@ -22,6 +22,7 @@ export const Contact = () => {
   const isNeo = activeStyle === "neobrutalism";
   const isSwiss = activeStyle === "swiss";
   const isGlass = activeStyle === "glassmorphism";
+  const isNeomorphic = activeStyle === "neomorphism";
   const linkBoxColors = ["bg-[#FFC7EA]", "bg-[#9AD0EC]", "bg-[#BFF6C3]"];
 
   const copyEmail = () => {
@@ -30,14 +31,41 @@ export const Contact = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const handleCopyPhone = () => {
+    navigator.clipboard.writeText(userData.phone);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   const links = [
-    { icon: <Mail size={28} />, label: "Email", value: userData.email || "Drop a Mail", action: copyEmail, color: "group-hover:border-purple-500 group-hover:shadow-[0_0_30px_-5px_rgba(168,85,247,0.3)]", iconColor: "group-hover:text-purple-400" },
-    { icon: <Instagram size={28} />, label: "Instagram", value: `@${userData.instagram}`, href: `https://instagram.com/${userData.instagram}`, color: "group-hover:border-cyan-400 group-hover:shadow-[0_0_30px_-5px_rgba(34,211,238,0.3)]", iconColor: "group-hover:text-cyan-400" },
-    { icon: <Github size={28} />, label: "GitHub", value: `@${userData.username}`, href: `https://github.com/${userData.username}`, color: "group-hover:border-gray-400 group-hover:shadow-[0_0_30px_-5px_rgba(156,163,175,0.3)]", iconColor: "group-hover:text-gray-400" }
+    {
+      icon: <Mail size={24} />,
+      label: "Email",
+      value: userData.email,
+      href: `mailto:${userData.email}`,
+      color: "hover:shadow-purple-500/10 hover:border-purple-500/30",
+      iconColor: "group-hover:text-purple-400 group-hover:bg-purple-500/10",
+    },
+    {
+      icon: <Instagram size={24} />,
+      label: "Instagram",
+      value: "@s.a.u.r.a.b_",
+      href: `https://instagram.com/s.a.u.r.a.b_`,
+      color: "hover:shadow-pink-500/10 hover:border-pink-500/30",
+      iconColor: "group-hover:text-pink-400 group-hover:bg-pink-500/10",
+    },
+    {
+      icon: <Github size={24} />,
+      label: "GitHub",
+      value: `@${userData.username}`,
+      href: `https://github.com/${userData.username}`,
+      color: "hover:shadow-slate-500/10 hover:border-slate-500/30",
+      iconColor: "group-hover:text-[#2f66ff] group-hover:bg-[#2f66ff]/10",
+    }
   ];
 
   return (
-    <section id="contact" className={`py-24 px-6 relative overflow-hidden ${isNeo ? 'bg-[#FFFDF6] border-t-4 border-black' : isSwiss ? 'bg-white border-t border-black' : isGlass ? 'bg-transparent border-t border-white/50' : 'bg-slate-950'}`}>
+    <section id="contact" className={`py-24 px-6 relative overflow-hidden ${isNeo ? 'bg-[#FFFDF6] border-t-4 border-black' : isSwiss ? 'bg-white border-t border-black' : isGlass ? 'bg-transparent border-t border-white/50' : isNeomorphic ? 'bg-[#e0e5ec] border-t border-[#cfd6e0]' : 'bg-slate-950'}`}>
       <BackgroundGrid />
 
       <div className="max-w-5xl mx-auto relative z-10 text-center">
@@ -72,6 +100,14 @@ export const Contact = () => {
               </span>
               .
             </span>
+          ) : isNeomorphic ? (
+            <span className="font-neo-display text-[#1a202c] uppercase tracking-tight">
+              Let's{" "}
+              <span className="bg-[#e0e5ec] text-[#2f66ff] px-5 py-1.5 inline-block not-italic font-bold font-neo-display rounded-2xl shadow-[-2px_-2px_6px_#fff,2px_2px_6px_#a3b1c6] mx-1">
+                Connect
+              </span>
+              .
+            </span>
           ) : (
             <span className="text-white">
               Let's <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-cyan-400">Connect</span>.
@@ -79,7 +115,7 @@ export const Contact = () => {
           )}
         </motion.h2>
         <motion.p
-          className={isNeo || isSwiss ? "text-black/85 font-bold mb-16 text-lg max-w-xl mx-auto" : isGlass ? "font-glass-sans text-[#3D4F3F] mb-16 text-base md:text-lg max-w-xl mx-auto" : "text-slate-400 mb-16 text-lg max-w-xl mx-auto"}
+          className={isNeo || isSwiss ? "text-black/85 font-bold mb-16 text-lg max-w-xl mx-auto" : isGlass ? "font-glass-sans text-[#3D4F3F] mb-16 text-base md:text-lg max-w-xl mx-auto" : isNeomorphic ? "font-neo-body text-[#4a5568] mb-16 text-base md:text-lg max-w-xl mx-auto" : "text-slate-400 mb-16 text-lg max-w-xl mx-auto"}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -106,7 +142,9 @@ export const Contact = () => {
                   ? "group cursor-pointer p-8 rounded-none bg-white border border-black hover:border-[#D82B27] hover:bg-neutral-50 transition-all duration-200"
                   : isGlass
                     ? "glass-mid group cursor-pointer p-8 rounded-3xl hover:bg-white/50 hover:translate-y-[-4px] transition-all duration-300 shadow-md"
-                    : `group cursor-pointer p-8 rounded-3xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 ${link.color}`}
+                    : isNeomorphic
+                      ? "neo-raised-heavy group cursor-pointer p-8 rounded-3xl hover:translate-y-[-4px] transition-all duration-300 shadow-md"
+                      : `group cursor-pointer p-8 rounded-3xl bg-slate-900/50 border border-slate-800 backdrop-blur-sm transition-all duration-300 hover:-translate-y-2 ${link.color}`}
             >
               <div className="flex flex-col items-center gap-5">
                 <div className={isNeo
@@ -115,7 +153,9 @@ export const Contact = () => {
                     ? "p-4 rounded-none border border-black bg-neutral-100 text-black group-hover:bg-[#D82B27] group-hover:text-white group-hover:border-[#D82B27] transition-all duration-200"
                     : isGlass
                       ? "p-4 rounded-2xl border border-white/60 bg-white/40 text-[#1A2E1F] group-hover:bg-[#6B4EFF]/10 group-hover:text-[#6B4EFF] group-hover:border-[#6B4EFF]/20 transition-all duration-200"
-                      : `p-4 rounded-2xl bg-slate-800/50 transition-colors text-slate-400 ${link.iconColor}`}>
+                      : isNeomorphic
+                        ? "p-4 rounded-2xl border border-white/40 bg-[#e0e5ec] text-[#2f66ff] neo-sunken"
+                        : `p-4 rounded-2xl bg-slate-800/50 transition-colors text-slate-400 ${link.iconColor}`}>
                   {link.icon}
                 </div>
                 <div>
@@ -125,7 +165,9 @@ export const Contact = () => {
                       ? "text-black/85 text-[10px] font-bold uppercase tracking-widest mb-1"
                       : isGlass
                         ? "font-glass-sans text-[11px] font-semibold text-[#7A8C7C] uppercase tracking-widest mb-1"
-                        : "text-slate-500 text-sm font-medium mb-1 uppercase tracking-wider"}>{link.label}</div>
+                        : isNeomorphic
+                          ? "font-neo-body text-[11px] font-bold text-[#4a5568] uppercase tracking-widest mb-1"
+                          : "text-slate-500 text-sm font-medium mb-1 uppercase tracking-wider"}>{link.label}</div>
                   {link.href ? (
                     <a 
                       href={link.href} 
@@ -137,16 +179,18 @@ export const Contact = () => {
                           ? "text-black font-black text-lg hover:underline decoration-3 decoration-[#D82B27] underline-offset-4"
                           : isGlass
                             ? "font-glass-sans font-bold text-lg text-[#1A2E1F] hover:text-[#6B4EFF] hover:underline decoration-[#6B4EFF]/40 decoration-2 underline-offset-4"
-                            : "text-white font-bold text-lg hover:underline decoration-2 underline-offset-4"}>
+                            : isNeomorphic
+                              ? "font-neo-body font-bold text-lg text-[#1a202c] hover:text-[#2f66ff] hover:underline decoration-[#2f66ff]/40 decoration-2 underline-offset-4"
+                              : "text-white font-bold text-lg hover:underline decoration-2 underline-offset-4"}>
                       {link.value}
                     </a>
                   ) : (
-                    <div className={isNeo || isSwiss || isGlass ? "text-[#1A2E1F] font-bold text-lg flex items-center justify-center gap-2" : "text-white font-bold text-lg flex items-center justify-center gap-2"}>
+                    <div className={isNeo || isSwiss || isGlass || isNeomorphic ? "text-[#1a202c] font-bold text-lg flex items-center justify-center gap-2" : "text-white font-bold text-lg flex items-center justify-center gap-2"}>
                       {link.value}
                       {copied ? (
                         <Check size={18} className="text-green-600" />
                       ) : (
-                        <Copy size={18} className={isNeo || isSwiss || isGlass ? "text-[#7A8C7C] opacity-0 group-hover:opacity-100 transition-opacity" : "text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity"} />
+                        <Copy size={18} className={isNeo || isSwiss || isGlass || isNeomorphic ? "text-[#4a5568] opacity-0 group-hover:opacity-100 transition-opacity" : "text-slate-500 opacity-0 group-hover:opacity-100 transition-opacity"} />
                       )}
                     </div>
                   )}
