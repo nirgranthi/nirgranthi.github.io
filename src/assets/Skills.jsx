@@ -1,4 +1,4 @@
-import { userData, uiChanger } from "./userData";
+import { userData, activeStyle } from "./userData";
 import { motion } from "framer-motion";
 
 const containerVariants = {
@@ -15,11 +15,12 @@ const itemVariants = {
 };
 
 export const Skills = () => {
-  const isNeo = uiChanger === "neobrutalism";
+  const isNeo = activeStyle === "neobrutalism";
+  const isSwiss = activeStyle === "swiss";
   const itemColors = ["bg-[#BFF6C3]", "bg-[#FFC7EA]", "bg-[#FFEAA7]", "bg-[#9AD0EC]"];
 
   return (
-    <section id="skills" className={`py-24 px-6 ${isNeo ? 'bg-[#FFFDF6] border-t-4 border-black' : 'bg-slate-900/30'}`}>
+    <section id="skills" className={`py-24 px-6 ${isNeo ? 'bg-[#FFFDF6] border-t-4 border-black' : isSwiss ? 'bg-white border-t border-black' : 'bg-slate-900/30'}`}>
       <div className="max-w-7xl mx-auto">
         <motion.div
           className="text-center mb-16"
@@ -28,8 +29,8 @@ export const Skills = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <h2 className={isNeo ? "text-4xl font-black text-black mb-6 uppercase tracking-wider" : "text-4xl font-bold text-white mb-6"}>Technical Arsenal</h2>
-          <p className={isNeo ? "text-black/80 font-bold max-w-2xl mx-auto" : "text-slate-400 max-w-2xl mx-auto"}>
+          <h2 className={isNeo ? "text-4xl font-black text-black mb-6 uppercase tracking-wider" : isSwiss ? "text-4xl font-black text-black mb-6 uppercase tracking-tighter" : "text-4xl font-bold text-white mb-6"}>Technical Arsenal</h2>
+          <p className={isNeo || isSwiss ? "text-black/85 font-bold max-w-2xl mx-auto" : "text-slate-400 max-w-2xl mx-auto"}>
             Here is the tech stack I use to build systems.
           </p>
         </motion.div>
@@ -40,7 +41,9 @@ export const Skills = () => {
               key={i}
               className={isNeo
                 ? "p-6 bg-white border-3 sm:border-4 border-black rounded-3xl shadow-[6px_6px_0px_rgba(0,0,0,1)] hover:-translate-x-1 hover:-translate-y-1 hover:shadow-[9px_9px_0px_rgba(0,0,0,1)] transition-all duration-200 flex flex-col items-center"
-                : "p-6 bg-slate-900 border border-slate-800 rounded-3xl hover:border-purple-500/50 transition-all flex flex-col items-center"}
+                : isSwiss
+                  ? "p-6 bg-white border border-black rounded-none hover:bg-neutral-50 transition-colors duration-200 flex flex-col items-center"
+                  : "p-6 bg-slate-900 border border-slate-800 rounded-3xl hover:border-purple-500/50 transition-all flex flex-col items-center"}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -48,7 +51,9 @@ export const Skills = () => {
             >
               <h3 className={isNeo
                 ? "text-lg font-black text-black mb-6 uppercase tracking-wider bg-[#FFDE4D] px-4 py-1.5 border-2 border-black rotate-[-1deg] shadow-[2px_2px_0px_rgba(0,0,0,1)]"
-                : "text-xl font-bold text-white mb-6"}>{skillGroup.category}</h3>
+                : isSwiss
+                  ? "text-md font-black text-[#D82B27] mb-6 uppercase tracking-widest border-b border-black w-full text-center pb-2"
+                  : "text-xl font-bold text-white mb-6"}>{skillGroup.category}</h3>
               <motion.div
                 className="flex flex-wrap gap-2 justify-center"
                 variants={containerVariants}
@@ -62,7 +67,9 @@ export const Skills = () => {
                     variants={itemVariants}
                     className={isNeo
                       ? `px-3 py-1.5 ${itemColors[(i + j) % itemColors.length]} text-black text-sm font-black rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-[3px_3px_0px_rgba(0,0,0,1)] transition-all`
-                      : "px-3 py-1.5 bg-slate-800/80 text-cyan-400 text-sm font-medium rounded-lg border border-slate-700/50 hover:bg-slate-700 transition-colors"}
+                      : isSwiss
+                        ? "px-3 py-1.5 bg-white text-black text-xs font-bold uppercase tracking-wider rounded-none border border-black hover:bg-[#D82B27] hover:text-white hover:border-[#D82B27] transition-colors duration-150"
+                        : "px-3 py-1.5 bg-slate-800/80 text-cyan-400 text-sm font-medium rounded-lg border border-slate-700/50 hover:bg-slate-700 transition-colors"}
                   >
                     {item}
                   </motion.span>

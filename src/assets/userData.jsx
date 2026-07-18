@@ -6,8 +6,17 @@ import {
   RadarAnimation
 } from "./ProjectAnimations";
 
-// Set to "default" or "neobrutalism" to toggle the portfolio theme style
-export const uiChanger = "neobrutalism";
+// Set to "default", "neobrutalism", "swiss", or "random" to toggle the portfolio theme style
+export const uiChanger = "random";
+
+const styles = ["default", "neobrutalism", "swiss"];
+export const activeStyle = (() => {
+  if (uiChanger === "random") {
+    const randomIndex = Math.floor(Math.random() * styles.length);
+    return styles[randomIndex];
+  }
+  return uiChanger;
+})();
 
 export const userData = {
   name: "Saurab",

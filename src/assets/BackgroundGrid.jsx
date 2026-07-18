@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
-import { uiChanger } from "./userData";
+import { activeStyle } from "./userData";
 
 export const BackgroundGrid = () => {
     const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
     const containerRef = useRef(null);
-    const isNeo = uiChanger === 'neobrutalism';
+    const isNeo = activeStyle === 'neobrutalism';
+    const isSwiss = activeStyle === 'swiss';
 
     useEffect(() => {
-        if (isNeo) return; // No mouse move tracking needed for simple dot grid
+        if (isNeo || isSwiss) return; // No mouse move tracking needed for static grids
         const handleWindowMouseMove = (e) => {
             if (!containerRef.current) return;
             const rect = containerRef.current.getBoundingClientRect();
@@ -18,7 +19,7 @@ export const BackgroundGrid = () => {
         };
         window.addEventListener("mousemove", handleWindowMouseMove);
         return () => window.removeEventListener("mousemove", handleWindowMouseMove);
-    }, [isNeo]);
+    }, [isNeo, isSwiss]);
 
     if (isNeo) {
         return (
@@ -27,6 +28,18 @@ export const BackgroundGrid = () => {
                 style={{
                     backgroundImage: 'radial-gradient(rgba(0, 0, 0, 0.12) 1.5px, transparent 1.5px)',
                     backgroundSize: '30px 30px'
+                }}
+            />
+        );
+    }
+
+    if (isSwiss) {
+        return (
+            <div
+                className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-white"
+                style={{
+                    backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px)',
+                    backgroundSize: '60px 60px'
                 }}
             />
         );

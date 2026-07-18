@@ -1,15 +1,16 @@
-import { userData, uiChanger } from "./userData";
+import { userData, activeStyle } from "./userData";
 import { Github, Instagram } from "lucide-react";
 import { BackgroundGrid } from "./BackgroundGrid";
 import { motion } from "framer-motion";
 import { MiniTerminal } from "./MiniTerminal";
 
 export const Hero = () => {
-  const isNeo = uiChanger === "neobrutalism";
+  const isNeo = activeStyle === "neobrutalism";
+  const isSwiss = activeStyle === "swiss";
 
   return (
-    <section className={`relative min-h-screen flex items-center justify-center px-6 pt-28 pb-12 overflow-hidden ${isNeo ? 'bg-[#FFFDF6]' : 'bg-slate-950'}`}>
-      {!isNeo && (
+    <section className={`relative min-h-screen flex items-center justify-center px-6 pt-28 pb-12 overflow-hidden ${isNeo ? 'bg-[#FFFDF6]' : isSwiss ? 'bg-white' : 'bg-slate-950'}`}>
+      {!(isNeo || isSwiss) && (
         <>
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/20 rounded-full blur-[120px] animate-pulse"></div>
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cyan-600/20 rounded-full blur-[120px] animate-pulse delay-700"></div>
@@ -30,7 +31,9 @@ export const Hero = () => {
           <motion.div
             className={isNeo
               ? "inline-block px-4 py-2 mb-6 border-3 border-black bg-[#38E54D] text-black text-xs font-black uppercase tracking-widest shadow-[3px_3px_0px_rgba(0,0,0,1)] rotate-[-1deg]"
-              : "inline-block px-4 py-1.5 mb-6 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium animate-bounce"}
+              : isSwiss
+                ? "inline-block px-4 py-2 mb-6 border border-black bg-[#D82B27] text-white text-xs font-bold uppercase tracking-widest rounded-none"
+                : "inline-block px-4 py-1.5 mb-6 rounded-full border border-purple-500/30 bg-purple-500/10 text-purple-400 text-sm font-medium animate-bounce"}
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -38,7 +41,7 @@ export const Hero = () => {
             Available for new opportunities
           </motion.div>
           <motion.h1
-            className={`text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight ${isNeo ? 'text-black' : 'text-white'}`}
+            className={`text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight ${isNeo || isSwiss ? 'text-black' : 'text-white'}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
@@ -46,6 +49,10 @@ export const Hero = () => {
             Designing the{" "}
             {isNeo ? (
               <span className="bg-[#FF5F9E] text-black px-4 py-1 border-3 sm:border-4 border-black rotate-[-2deg] inline-block shadow-[4px_4px_0px_rgba(0,0,0,1)] not-italic font-black mx-1">
+                Future
+              </span>
+            ) : isSwiss ? (
+              <span className="bg-[#D82B27] text-white px-4 py-1 sm:py-1.5 inline-block not-italic font-black mx-1 rounded-none uppercase">
                 Future
               </span>
             ) : (
@@ -56,12 +63,12 @@ export const Hero = () => {
             of Web.
           </motion.h1>
           <motion.p
-            className={`text-xl md:text-2xl max-w-2xl mx-auto lg:mx-0 mb-10 ${isNeo ? 'text-black/80 font-bold' : 'text-slate-400'}`}
+            className={`text-xl md:text-2xl max-w-2xl mx-auto lg:mx-0 mb-10 ${isNeo || isSwiss ? 'text-black/85 font-bold' : 'text-slate-400'}`}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
           >
-            Hi, I'm <span className={isNeo ? "text-[#590696] font-black underline decoration-wavy decoration-3 underline-offset-4" : "text-white font-semibold"}>{userData.name}</span>. {userData.bio}
+            Hi, I'm <span className={isNeo ? "text-[#590696] font-black underline decoration-wavy decoration-3 underline-offset-4" : isSwiss ? "text-[#D82B27] font-black uppercase" : "text-white font-semibold"}>{userData.name}</span>. {userData.bio}
           </motion.p>
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4"
@@ -73,7 +80,9 @@ export const Hero = () => {
               href="#projects" 
               className={isNeo 
                 ? "px-8 py-4 bg-[#00E7FF] hover:bg-[#00D0EB] text-black font-black uppercase tracking-wider border-3 border-black rounded-xl transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none shadow-[4px_4px_0px_rgba(0,0,0,1)]" 
-                : "px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-purple-600/25"}>
+                : isSwiss
+                  ? "px-8 py-4 bg-black hover:bg-[#D82B27] text-white font-bold uppercase tracking-widest text-sm rounded-none border border-black transition-all duration-200"
+                  : "px-8 py-4 bg-purple-600 hover:bg-purple-700 text-white font-bold rounded-xl transition-all hover:scale-105 active:scale-95 shadow-lg shadow-purple-600/25"}>
               View My Work
             </a>
             <div className="flex gap-4">
@@ -84,7 +93,9 @@ export const Hero = () => {
                 aria-label="GitHub Profile" 
                 className={isNeo 
                   ? "p-4 bg-[#FFC7EA] hover:bg-[#FFA5D8] text-black rounded-xl border-3 border-black transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none shadow-[4px_4px_0px_rgba(0,0,0,1)]" 
-                  : "p-4 bg-slate-800/50 hover:bg-slate-800 text-white rounded-xl border border-slate-700 transition-all"}>
+                  : isSwiss
+                    ? "p-4 bg-white hover:bg-[#D82B27] hover:text-white text-black rounded-none border border-black transition-all duration-200"
+                    : "p-4 bg-slate-800/50 hover:bg-slate-800 text-white rounded-xl border border-slate-700 transition-all"}>
                 <Github size={24} />
               </a>
               <a 
@@ -94,7 +105,9 @@ export const Hero = () => {
                 aria-label="Instagram Profile" 
                 className={isNeo 
                   ? "p-4 bg-[#FFC7EA] hover:bg-[#FFA5D8] text-black rounded-xl border-3 border-black transition-all hover:translate-x-[2px] hover:translate-y-[2px] hover:shadow-[2px_2px_0px_rgba(0,0,0,1)] active:translate-x-[4px] active:translate-y-[4px] active:shadow-none shadow-[4px_4px_0px_rgba(0,0,0,1)]" 
-                  : "p-4 bg-slate-800/50 hover:bg-slate-800 text-white rounded-xl border border-slate-700 transition-all"}>
+                  : isSwiss
+                    ? "p-4 bg-white hover:bg-[#D82B27] hover:text-white text-black rounded-none border border-black transition-all duration-200"
+                    : "p-4 bg-slate-800/50 hover:bg-slate-800 text-white rounded-xl border border-slate-700 transition-all"}>
                 <Instagram size={24} />
               </a>
             </div>

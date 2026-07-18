@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
-import { uiChanger } from "./userData";
+import { activeStyle } from "./userData";
 
 function cn(...inputs) {
     return twMerge(clsx(inputs));
@@ -13,10 +13,11 @@ export const BentoCard = ({ project, className }) => {
     const [isFocused, setIsFocused] = useState(false);
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [opacity, setOpacity] = useState(0);
-    const isNeo = uiChanger === "neobrutalism";
+    const isNeo = activeStyle === "neobrutalism";
+    const isSwiss = activeStyle === "swiss";
 
     const handleMouseMove = (e) => {
-        if (!divRef.current || isFocused || isNeo) return;
+        if (!divRef.current || isFocused || isNeo || isSwiss) return;
 
         const div = divRef.current;
         const rect = div.getBoundingClientRect();
@@ -25,24 +26,24 @@ export const BentoCard = ({ project, className }) => {
     };
 
     const handleFocus = () => {
-        if (isNeo) return;
+        if (isNeo || isSwiss) return;
         setIsFocused(true);
         setOpacity(1);
     };
 
     const handleBlur = () => {
-        if (isNeo) return;
+        if (isNeo || isSwiss) return;
         setIsFocused(false);
         setOpacity(0);
     };
 
     const handleMouseEnter = () => {
-        if (isNeo) return;
+        if (isNeo || isSwiss) return;
         setOpacity(1);
     };
 
     const handleMouseLeave = () => {
-        if (isNeo) return;
+        if (isNeo || isSwiss) return;
         setOpacity(0);
     };
 
@@ -57,7 +58,9 @@ export const BentoCard = ({ project, className }) => {
             className={cn(
                 isNeo
                     ? "relative rounded-3xl border-3 sm:border-4 border-black bg-white overflow-hidden group shadow-[6px_6px_0px_rgba(0,0,0,1)] hover:-translate-x-1.5 hover:-translate-y-1.5 hover:shadow-[10px_10px_0px_rgba(0,0,0,1)] transition-all duration-200"
-                    : "relative rounded-3xl border border-slate-800 bg-slate-900 overflow-hidden group",
+                    : isSwiss
+                        ? "relative rounded-none border border-black bg-white overflow-hidden group hover:border-[#D82B27] transition-all duration-200"
+                        : "relative rounded-3xl border border-slate-800 bg-slate-900 overflow-hidden group",
                 className
             )}
             initial={{ opacity: 0, y: 20 }}
@@ -65,7 +68,7 @@ export const BentoCard = ({ project, className }) => {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
         >
-            {!isNeo && (
+            {!(isNeo || isSwiss) && (
                 <div
                     className="pointer-events-none absolute -inset-px opacity-0 transition duration-300"
                     style={{
@@ -79,7 +82,9 @@ export const BentoCard = ({ project, className }) => {
                     <div className="flex justify-between items-start mb-6">
                         <div className={isNeo
                             ? "p-3 bg-[#FFDE4D] text-black border-2 border-black rounded-2xl shadow-[2px_2px_0px_rgba(0,0,0,1)]"
-                            : "p-3 bg-slate-800/50 text-slate-300 rounded-2xl group-hover:bg-purple-500/10 group-hover:text-purple-400 transition-colors"}>
+                            : isSwiss
+                                ? "p-3 bg-neutral-100 text-black border border-black rounded-none"
+                                : "p-3 bg-slate-800/50 text-slate-300 rounded-2xl group-hover:bg-purple-500/10 group-hover:text-purple-400 transition-colors"}>
                             {project.icon}
                         </div>
                         <div className="flex gap-3">
@@ -90,7 +95,9 @@ export const BentoCard = ({ project, className }) => {
                                     rel="noopener noreferrer" 
                                     className={isNeo
                                         ? "p-2.5 text-black bg-white border-2 border-black rounded-full shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-[#FFC7EA] active:translate-y-[2px] active:shadow-none transition-all"
-                                        : "p-2 text-slate-500 hover:text-white transition-colors bg-slate-950/50 rounded-full backdrop-blur-md"}>
+                                        : isSwiss
+                                            ? "p-2.5 text-black bg-white border border-black rounded-none hover:bg-black hover:text-white transition-all duration-200"
+                                            : "p-2 text-slate-500 hover:text-white transition-colors bg-slate-950/50 rounded-full backdrop-blur-md"}>
                                     {project.githubIcon}
                                 </a>
                             )}
@@ -101,7 +108,9 @@ export const BentoCard = ({ project, className }) => {
                                     rel="noopener noreferrer" 
                                     className={isNeo
                                         ? "p-2.5 text-black bg-white border-2 border-black rounded-full shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-[#FFC7EA] active:translate-y-[2px] active:shadow-none transition-all"
-                                        : "p-2 text-slate-500 hover:text-white transition-colors bg-slate-950/50 rounded-full backdrop-blur-md"}>
+                                        : isSwiss
+                                            ? "p-2.5 text-black bg-white border border-black rounded-none hover:bg-black hover:text-white transition-all duration-200"
+                                            : "p-2 text-slate-500 hover:text-white transition-colors bg-slate-950/50 rounded-full backdrop-blur-md"}>
                                     {project.demoIcon}
                                 </a>
                             )}
@@ -111,13 +120,15 @@ export const BentoCard = ({ project, className }) => {
                     {/* Image / Mockup Area */}
                     <div className={isNeo
                         ? "w-full aspect-video bg-[#FFFDF6] border-2 border-black rounded-xl mb-6 overflow-hidden relative"
-                        : "w-full aspect-video bg-slate-900/40 backdrop-blur-md rounded-xl mb-6 overflow-hidden relative border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"}>
+                        : isSwiss
+                            ? "w-full aspect-video bg-neutral-50 border border-black rounded-none mb-6 overflow-hidden relative"
+                            : "w-full aspect-video bg-slate-900/40 backdrop-blur-md rounded-xl mb-6 overflow-hidden relative border border-white/5 shadow-[inset_0_1px_1px_rgba(255,255,255,0.1)]"}>
                         {project.image ? (
                             <img src={project.image} alt={`${project.title} preview`} className="w-full h-full object-cover" />
                         ) : (
                             <div className={cn(
                                 "w-full h-full flex items-center justify-center relative overflow-hidden",
-                                isNeo ? "bg-linear-to-br from-[#FFEAA7]/40 to-[#FFFDF6]" : "bg-linear-to-br from-slate-800/50 to-slate-900/50"
+                                isNeo ? "bg-linear-to-br from-[#FFEAA7]/40 to-[#FFFDF6]" : isSwiss ? "bg-[#F9F9F9]" : "bg-linear-to-br from-slate-800/50 to-slate-900/50"
                             )}>
                                 {project.animation}
                             </div>
@@ -126,20 +137,24 @@ export const BentoCard = ({ project, className }) => {
 
                     <h3 className={isNeo
                         ? "text-2xl font-black text-black mb-3 group-hover:text-[#590696] transition-colors"
-                        : "text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors"}>{project.title}</h3>
-                    <p className={isNeo ? "text-black/80 font-bold mb-6" : "text-slate-400 mb-6"}>{project.description}</p>
+                        : isSwiss
+                            ? "text-2xl font-black text-black mb-3 group-hover:text-[#D82B27] transition-colors uppercase tracking-tighter"
+                            : "text-2xl font-bold text-white mb-3 group-hover:text-purple-300 transition-colors"}>{project.title}</h3>
+                    <p className={isNeo ? "text-black/80 font-bold mb-6" : isSwiss ? "text-black/85 font-medium text-sm mb-6" : "text-slate-400 mb-6"}>{project.description}</p>
                 </div>
 
                 <div className={cn(
                     "flex flex-wrap gap-2 mt-auto pt-6",
-                    isNeo ? "border-t-2 border-black" : "border-t border-slate-800/50"
+                    isNeo ? "border-t-2 border-black" : isSwiss ? "border-t border-black" : "border-t border-slate-800/50"
                 )}>
                     {project.tech.map((t, j) => (
                         <span 
                             key={j} 
                             className={isNeo
                                 ? "px-3 py-1 bg-[#BFF6C3] text-black text-xs font-black rounded-lg border-2 border-black shadow-[2px_2px_0px_rgba(0,0,0,1)] hover:bg-[#A3ECA8] transition-all"
-                                : "px-3 py-1 bg-slate-950/50 text-slate-400 text-xs rounded-lg border border-slate-800 backdrop-blur-sm transition-colors group-hover:border-slate-700"}>
+                                : isSwiss
+                                    ? "px-3 py-1 bg-white text-black text-xs font-bold uppercase tracking-wider rounded-none border border-black hover:bg-[#D82B27] hover:text-white hover:border-[#D82B27] transition-colors duration-150"
+                                    : "px-3 py-1 bg-slate-950/50 text-slate-400 text-xs rounded-lg border border-slate-800 backdrop-blur-sm transition-colors group-hover:border-slate-700"}>
                             {t}
                         </span>
                     ))}
