@@ -1,5 +1,4 @@
 import { userData, activeStyle } from "./userData";
-import { motion } from "framer-motion";
 
 const containerVariants = {
   hidden: { opacity: 0 },

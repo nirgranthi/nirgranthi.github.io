@@ -2,12 +2,12 @@ import {
   NeuralNetworkAnimation,
   ScanningDataAnimation,
   MatrixRainAnimation,
-  IsometricVoxelsAnimation,
   RadarAnimation
 } from "./ProjectAnimations";
 
 // Set to "default", "neobrutalism", "swiss", "glassmorphism", "neomorphism", or "random" to toggle the portfolio theme style
-export const uiChanger = "random";
+export const uiChanger = "neomorphism";
+// I think the glassmorphism looks more like journalism sites
 
 // Removed default on purpose
 const styles = ["neobrutalism", "swiss", "glassmorphism", "neomorphism"];
